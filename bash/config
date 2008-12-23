@@ -3,3 +3,5 @@ export PS1="\u@\h \w \\$ "
 
 # ls colors on macos
 export CLICOLOR=1
+
+. /usr/local/git/contrib/completion/git-completion.bash
