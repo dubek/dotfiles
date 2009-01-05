@@ -84,6 +84,17 @@ set hidden
 " Toggle highlighting of found search terms on/off
 map <F4> :set hlsearch!<CR>:set nohlsearch?<CR>
 
+map <leader>t :NERDTreeToggle<CR>
+
+"
+" bufferlist plugin
+"
+map <silent> <F3> :call BufferList()<CR>
+let g:BufferListWidth = 25
+let g:BufferListMaxWidth = 50
+hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
+hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
+
 autocmd FileType ruby,eruby,perl,tex,html,xhtml,xml set shiftwidth=2 sts=2 et
 
 autocmd FileType ruby set kp=ri
