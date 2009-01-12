@@ -1,7 +1,10 @@
 # Set the prompt
-export PS1="\u@\h \w \\$ "
+export PS1="\e[1;32m\u@\h \w \\$\e[0m "
 
 # ls colors on macos
 export CLICOLOR=1
+
+# turn on grep colors
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
 . /usr/local/git/contrib/completion/git-completion.bash
