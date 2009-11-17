@@ -3,6 +3,13 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Colors!
+set background=dark
+colorscheme ir_black
+syntax on
+set guifont=Monaco:h12
+" set guifont=DejaVu\ Sans\ Mono:h13
+
 set modeline
 set modelines=3
 
