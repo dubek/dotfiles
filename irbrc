@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'wirble'
+require 'g' rescue nil
 
 # start wirble (with color)
 Wirble.init # (:skip_prompt => true)
