@@ -7,7 +7,8 @@ set nocompatible
 set background=dark
 colorscheme ir_black
 syntax on
-set guifont=Monaco:h12
+set guifont=Bitstream\ Vera\ Sans\ Mono:h12.00
+" set guifont=Monaco:h12
 " set guifont=DejaVu\ Sans\ Mono:h13
 
 set modeline
