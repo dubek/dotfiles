@@ -11,3 +11,30 @@ export CLICOLOR=1
 
 # turn on grep colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+
+
+function sumcolumn () {
+  awk -f <(echo '
+# Sum up numerical values by column (white-space separated)
+#
+# Usage:  $0 [file ...]
+#
+# stern, 1999-2005
+# from http://stackoverflow.com/questions/295781/shortest-command-to-calculate-the-sum-of-a-column-of-output-on-unix
+
+{
+    for(i = 1; i <= NF; ++i) {
+        scale = 1
+        if ($i ~ /[kK]$/) { scale = 1000 }
+        if ($i ~ /[mM]$/) { scale = 1000*1000 }
+        if ($i ~ /[gG]$/) { scale = 1000*1000*1000 }
+        col[i] += scale * $i;
+    }
+    if (NF > maxnf) maxnf = NF;
+}
+
+END {
+    for(i = 1; i <= maxnf; ++i) { printf " %.10g", col[i] }
+    print "";
+}') $*
+}
