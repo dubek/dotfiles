@@ -1,10 +1,19 @@
+# rvm-prompt supplied with rvm is very slow, here's my faster alternative:
+function __fast_rvm_ps1() {
+	rubybin=$(command -v ruby)
+	if [[ "${rubybin/rvm/}" != "$rubybin" ]] ; then
+		withoutprefix="${rubybin/*rubies\//}"
+		justversion="${withoutprefix/\/*}"
+		echo "$justversion "
+	fi
+}
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 . /usr/local/git/contrib/completion/git-completion.bash
 
 # Set the prompt
 #export PS1='\[\e[0;32m\]\u@\h \[\e[1;32m\]\w\[\e[0;32m\] \$\[\e[0m\] '
-export PS1='\u@\h \w$(__git_ps1) \$ '
+export PS1='$(__fast_rvm_ps1)\u@\h \w$(__git_ps1) \$ '
 
 # ls colors on macos
 export CLICOLOR=1
