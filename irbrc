@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'wirble'
+require 'pp' rescue nil
+require 'ap' rescue nil
 require 'g' rescue nil
 
 # start wirble (with color)
