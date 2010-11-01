@@ -111,7 +111,7 @@ let g:BufferListMaxWidth = 50
 hi BufferSelected term=reverse ctermfg=white ctermbg=red cterm=bold
 hi BufferNormal term=NONE ctermfg=black ctermbg=darkcyan cterm=NONE
 
-autocmd FileType ruby,eruby,perl,tex,html,xhtml,xml set shiftwidth=2 sts=2 et
+autocmd FileType ruby,eruby,lua,perl,tex,html,xhtml,xml set shiftwidth=2 sts=2 et
 
 autocmd FileType ruby set kp=ri
 autocmd FileType ruby set softtabstop=2|set shiftwidth=2|set expandtab
