@@ -1,8 +1,7 @@
 require 'rubygems'
-require 'wirble'
+require 'wirble' # gem install wirble
 require 'pp' rescue nil
-require 'ap' rescue nil
-require 'g' rescue nil
+require 'ap' rescue nil # gem install awesome_print
 
 # start wirble (with color)
 Wirble.init # (:skip_prompt => true)
