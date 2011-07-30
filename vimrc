@@ -10,6 +10,7 @@ syntax on
 set guifont=Bitstream\ Vera\ Sans\ Mono:h12.00
 " set guifont=Monaco:h12
 " set guifont=DejaVu\ Sans\ Mono:h13
+set printfont=Courier:h7
 
 set modeline
 set modelines=3
@@ -96,9 +97,13 @@ set incsearch
 " Tell Vim to quit whining about unsaved buffers when I want to open a new
 " buffer. Vim just hides the unsaved buffer, instead of trying to close it.
 set hidden
+map <C-j> :bprev<CR>
+map <C-k> :bnext<CR>
 
 " Toggle highlighting of found search terms on/off
 map <F4> :set hlsearch!<CR>:set nohlsearch?<CR>
+" Disable highlighting of found search terms once, with a single keystroke
+map - :nohls<cr>
 
 map <leader>t :NERDTreeToggle<CR>
 
