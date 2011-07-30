@@ -10,9 +10,9 @@ function __fast_rvm_ps1() {
 
 # export GIT_PS1_SHOWUPSTREAM=auto
 # export GIT_PS1_SHOWUPSTREAM=verbose
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWDIRTYSTATE=1
+# export GIT_PS1_SHOWUNTRACKEDFILES=1
+# export GIT_PS1_SHOWSTASHSTATE=1
+# export GIT_PS1_SHOWDIRTYSTATE=1
 . /usr/local/git/contrib/completion/git-completion.bash
 
 # Set the prompt
@@ -24,6 +24,9 @@ export CLICOLOR=1
 
 # turn on grep colors
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+
+# turn on timestamps in bash history
+export HISTTIMEFORMAT='%F %T '
 
 
 function sumcolumn () {
