@@ -129,5 +129,8 @@ autocmd FileType ruby set softtabstop=2|set shiftwidth=2|set expandtab
 autocmd BufEnter *.yaml set softtabstop=2|set shiftwidth=2|set expandtab
 autocmd BufEnter *.yml  set softtabstop=2|set shiftwidth=2|set expandtab
 
+" Lua web-service
+autocmd BufNewFile,BufRead *.ws set ft=lua
+
 " Abbreviations
 ab comline #-----------------------------------------------------------------------------#
