@@ -107,6 +107,11 @@ map - :nohls<cr>
 
 map <leader>t :NERDTreeToggle<CR>
 
+" paste toggle
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
 "
 " bufferlist plugin
 "
