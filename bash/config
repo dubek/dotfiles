@@ -28,6 +28,7 @@ export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 # turn on timestamps in bash history
 export HISTTIMEFORMAT='%F %T '
 
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 
 function sumcolumn () {
   awk -f <(echo '
