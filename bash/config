@@ -1,59 +1,60 @@
-# rvm-prompt supplied with rvm is very slow, here's my faster alternative:
-function __fast_rvm_ps1() {
-	rubybin=$(command -v ruby)
-	if [[ "${rubybin/rvm/}" != "$rubybin" ]] ; then
-		withoutprefix="${rubybin/*rubies\//}"
-		justversion="${withoutprefix/\/*}"
-		echo "$justversion "
-	fi
-}
+# Expand ** in filenames to recursive match
+shopt -s globstar
+
+export EDITOR=/usr/bin/vim
 
 # export GIT_PS1_SHOWUPSTREAM=auto
 # export GIT_PS1_SHOWUPSTREAM=verbose
 # export GIT_PS1_SHOWUNTRACKEDFILES=1
 # export GIT_PS1_SHOWSTASHSTATE=1
-# export GIT_PS1_SHOWDIRTYSTATE=1
-. /usr/local/git/contrib/completion/git-completion.bash
+export GIT_PS1_SHOWDIRTYSTATE=1
+if [ -f /usr/lib/git-core/git-sh-prompt ] ; then
+  . /usr/lib/git-core/git-sh-prompt
+elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] ; then
+  . /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
 
 # Set the prompt
 #export PS1='\[\e[0;32m\]\u@\h \[\e[1;32m\]\w\[\e[0;32m\] \$\[\e[0m\] '
-export PS1='$(__fast_rvm_ps1)\u@\h \w$(__git_ps1) \$ '
+if [[ "$(type -t __git_ps1)" == 'function' ]] ; then
+#  export PS1='\u@\h \w$(__git_ps1) \$ '
+  PROMPT_COMMAND='__git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]" " \$ "'
+#else
+#  export PS1='\u@\h \w \$ '
+fi
+
+if [ -f /usr/local/bin/kubectl ] ; then
+  . <(kubectl completion bash)
+fi
 
 # ls colors on macos
 export CLICOLOR=1
 
-# turn on grep colors
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-
 # turn on timestamps in bash history
 export HISTTIMEFORMAT='%F %T '
 
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ] ; then
-  export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+# don't add command-line to history if it starts with 3 spaces
+export HISTIGNORE="   *"
+
+# Colours for less(1). This is taken from a standard /etc/profile.d/less.sh on
+# a modern Linux.
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;38;5;208m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[04;38;5;111m'
+
+alias ls='ls --color'
+alias ll='ls -la'
+alias grep='grep --color=auto'
+
+. ~/dotfiles/bash/functions
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+
+if [ -x "${HOME}/.local/bin/wsl-ssh-agent-relay" ] ; then
+  ${HOME}/.local/bin/wsl-ssh-agent-relay start
+  export SSH_AUTH_SOCK=${HOME}/.ssh/wsl-ssh-agent.sock
 fi
-
-function sumcolumn () {
-  awk -f <(echo '
-# Sum up numerical values by column (white-space separated)
-#
-# Usage:  $0 [file ...]
-#
-# stern, 1999-2005
-# from http://stackoverflow.com/questions/295781/shortest-command-to-calculate-the-sum-of-a-column-of-output-on-unix
-
-{
-    for(i = 1; i <= NF; ++i) {
-        scale = 1
-        if ($i ~ /[kK]$/) { scale = 1000 }
-        if ($i ~ /[mM]$/) { scale = 1000*1000 }
-        if ($i ~ /[gG]$/) { scale = 1000*1000*1000 }
-        col[i] += scale * $i;
-    }
-    if (NF > maxnf) maxnf = NF;
-}
-
-END {
-    for(i = 1; i <= maxnf; ++i) { printf " %.10g", col[i] }
-    print "";
-}') $*
-}
