@@ -1,0 +1,9 @@
+TAGS
+\#*\#
+*.swp
+*.o
+*.lo
+*.la
+.deps/
+.libs/
+.DS_Store

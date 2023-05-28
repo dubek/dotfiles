@@ -1,0 +1,89 @@
+[user]
+  email = dov.murik@gmail.com
+  name = Dov Murik
+
+[core]
+  excludesfile = ~/.gitignore
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  pager="less -+$LESS -FRX"
+
+[color]
+  ui = true
+  #local = yellow
+  #remote = green
+
+[color "diff"]
+  meta = 11
+  commit = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  # Highlight whitespace in diffs
+  whitespace = red reverse
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[alias]
+  st = status
+  ci = commit
+  br = branch -vv
+  co = checkout
+  df = diff
+  dft = difftool
+  difft = difftool
+  root = rev-parse --show-toplevel
+  ff = merge --ff-only
+  fap = fetch --all --prune
+  unmerged = branch -a --no-merged
+  lg = log --graph --pretty=format:'%C(auto)%h%d %s (%ar) <%an>'
+  publish = !/usr/bin/git-publish
+  pp = push -u origin HEAD
+
+[merge]
+  conflictstyle = diff3
+
+[pull]
+  ff = only
+
+[push]
+  default = simple
+
+[diff]
+  algorithm = patience
+  renames = copies
+  colorMoved = default
+  tool = difftastic
+
+[difftool]
+  prompt = false
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+  difftool = true
+
+[rerere]
+  enabled = true
+
+[transfer]
+  fsckobjects = true
+
+[sendemail]
+  aliasesFile = ~/.mutt/aliases
+  aliasFileType = mutt
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
