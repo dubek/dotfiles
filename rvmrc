@@ -1,0 +1,2 @@
+# Disable overriding 'cd' and loading .rvmrc files
+rvm_project_rvmrc=0

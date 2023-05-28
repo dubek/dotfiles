@@ -1,11 +1,5 @@
 require 'rubygems'
-require 'wirble' # gem install wirble
 require 'pp' rescue nil
-require 'ap' rescue nil # gem install awesome_print
-
-# start wirble (with color)
-Wirble.init # (:skip_prompt => true)
-Wirble.colorize
 
 # Log to STDOUT if in Rails
 if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
