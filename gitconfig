@@ -47,6 +47,7 @@
   lg = log --graph --pretty=format:'%C(auto)%h%d %s (%ar) <%an>'
   publish = !/usr/bin/git-publish
   pp = push -u origin HEAD
+  sw = switch
 
 [merge]
   conflictstyle = diff3
